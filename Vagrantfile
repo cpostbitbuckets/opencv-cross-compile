@@ -8,7 +8,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Every Vagrant virtual environment requires a box to build off of.
   config.vm.box = BOX_NAME
   config.vm.box_check_update = true
-
+  config.vm.provider "virtualbox" do |v|
+    v.memory = 8192
+    v.cpus = 6
+  end
+  
   # define an infrared that is used by ansible
   config.vm.define :debian do |debian|
     debian.vm.hostname = "debian"
@@ -22,7 +26,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
      ansible.limit = "all"
      ansible.verbose = "v"
      ansible.inventory_path = "ansible/inventory/vagrant"
-     ansible.tags = "opencv"
+    #  ansible.tags = "opencv"
    end
   end
 

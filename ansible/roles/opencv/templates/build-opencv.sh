@@ -32,4 +32,4 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE \
 #     -D BUILD_DOCS=OFF \
 #     -D BUILD_EXAMPLES=OFF ..
 
-make -j16
+make -j6
