@@ -1,0 +1,37 @@
+- name: Create opencv build dirs
+  file:
+    path: "{{ opencv_build_folder }}/{{ item }}"
+    state: directory
+  with_items:
+    - opencv
+    - opencv_contrib
+
+- name: Download opencv zip
+  get_url:
+    url: "https://github.com/opencv/opencv/archive/{{ opencv_version }}.zip"
+    dest: "{{ opencv_build_folder }}/opencv-{{ opencv_version }}.zip"
+
+- name: Download opencv_contrib zip
+  get_url:
+    url: "https://github.com/opencv/opencv_contrib/archive/{{ opencv_version }}.zip"
+    dest: "{{ opencv_build_folder }}/opencv_contrib-{{ opencv_version }}.zip"
+
+- name: Extract opencv binaries
+  unarchive:
+    src: "{{ opencv_build_folder }}/opencv-{{ opencv_version }}.zip"
+    dest: "{{ opencv_build_folder }}"
+    remote_src: yes
+
+- name: Extract opencv_contrib binaries
+  unarchive:
+    src: "{{ opencv_build_folder }}/opencv_contrib-{{ opencv_version }}.zip"
+    dest: "{{ opencv_build_folder }}"
+    remote_src: yes
+
+- name: Copy opencv scripts to /home
+  template:
+    src: "{{ item }}"
+    dest: "{{ opencv_build_folder }}/{{ item }}"
+    mode: 0777
+  with_items:
+    - build-opencv.sh

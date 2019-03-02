@@ -1,0 +1,14 @@
+## Special playbook just for doing the vagrant step. We will call ansible manually to provision the rest
+---
+- hosts: all
+  gather_facts: no
+  roles:
+    - vagrant
+  become: yes
+
+- hosts: all
+  gather_facts: no
+  roles:
+    - opencv
+  tags:
+    - opencv

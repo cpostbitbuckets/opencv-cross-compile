@@ -1,0 +1,17 @@
+# This role installs docker-engine from the yum repo and starts it as a service
+# It also adds an ssh key to the .ssh/authorized_keys for the vagrant user
+# This role requires root access.
+
+- include: docker-client.yml
+- include: opencv-dev.yml
+
+- name: Copy .bashrc to /home
+  copy:
+    src: "{{ item }}"
+    dest: "/home/vagrant/{{ item }}"
+    mode: 0777
+    owner: vagrant
+    group: vagrant
+  with_items:
+    - .bashrc
+    - .bash_profile
