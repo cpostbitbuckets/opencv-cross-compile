@@ -1,12 +1,9 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-VAGRANTFILE_API_VERSION = "2"
-BOX_NAME = "debian/stretch64"
-
-Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+Vagrant.configure(2) do |config|
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = BOX_NAME
+  config.vm.box = "debian/stretch64"
   config.vm.box_check_update = true
   config.vm.provider "virtualbox" do |v|
     v.memory = 8192

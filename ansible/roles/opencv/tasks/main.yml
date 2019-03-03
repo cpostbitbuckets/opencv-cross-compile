@@ -35,3 +35,20 @@
     mode: 0777
   with_items:
     - build-opencv.sh
+    - build-opencv-package.sh
+
+- name: Create dist folder
+  file:
+    path: "{{ opencv_build_folder }}/dist"
+    state: directory
+
+- name: template opencv.pc for distributable package
+  template:
+    src: opencv.pc
+    dest: "{{ opencv_build_folder }}/dist/opencv.pc"
+
+- name: Run the build-opencv.sh
+  shell: "{{ opencv_build_folder }}/build-opencv.sh"
+
+- name: Run the build-opencv-package.sh
+  shell: "{{ opencv_build_folder }}/build-opencv-package.sh"

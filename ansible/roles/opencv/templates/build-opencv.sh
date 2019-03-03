@@ -7,7 +7,7 @@ mkdir -p {{ opencv_build_folder }}/opencv-{{ opencv_version }}/build
 cd {{ opencv_build_folder }}/opencv-{{ opencv_version }}/build
 
 cmake -D CMAKE_BUILD_TYPE=RELEASE \
-    -D CMAKE_INSTALL_PREFIX=/opt/opencv-4.0.0 \
+    -D CMAKE_INSTALL_PREFIX={{ opencv_install_folder }} \
     -D CMAKE_TOOLCHAIN_FILE=../platforms/linux/arm-gnueabi.toolchain.cmake \
     -D OPENCV_EXTRA_MODULES_PATH={{ opencv_build_folder }}/opencv_contrib-{{ opencv_version }}/modules \
     -D ENABLE_NEON=ON \
@@ -20,16 +20,11 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE \
     -D PYTHON3_NUMPY_INCLUDE_DIRS=/usr/lib/python3/dist-packages/numpy/core/include \
     -D BUILD_OPENCV_PYTHON2=ON \
     -D BUILD_OPENCV_PYTHON3=ON \
+    -D WITH_GTK=ON \
+    -D WITH_FFMPEG=ON \
     -D INSTALL_PYTHON_EXAMPLES=OFF \
     -D BUILD_TESTS=OFF \
     -D BUILD_DOCS=OFF \
     -D BUILD_EXAMPLES=OFF ..
-
-# cmake -D CMAKE_BUILD_TYPE=RELEASE \
-#     -D OPENCV_ENABLE_NONFREE=ON \
-#     -D WIDTH_GTK=ON \
-#     -D BUILD_TESTS=OFF \
-#     -D BUILD_DOCS=OFF \
-#     -D BUILD_EXAMPLES=OFF ..
 
 make -j6

@@ -12,22 +12,9 @@ This project is a simple vagrant/ansible project to
 * download opencv binaries
 
 ## Bring up the VM
-First step to use it is to bring up the vagrant box
+Bring up the vagrant box. This will create a new debian/stretch VM, install all the arm development libraries on it and compile/install/package opencv
 
 ```bash
 vagrant up
-```
-
-## Build opencv
-
-Once the VM is up, ssh to the box and build the opencv libraries
-
-```bash
-vagrant ssh
-
-# call the build script
-cd opencv-build
-./build-opencv.sh
-
 ```
 

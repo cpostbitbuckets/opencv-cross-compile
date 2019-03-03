@@ -1,2 +1,3 @@
 opencv_version: '3.3.0'
 opencv_build_folder: /home/vagrant/opencv-build
+opencv_install_folder: "/opt/opencv-{{ opencv_version }}"

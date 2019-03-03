@@ -1,4 +1,8 @@
-## Special playbook just for doing the vagrant step. We will call ansible manually to provision the rest
+# ansible playbook for 
+# * updating the kernel
+# * doing a reboot
+# * installing opencv packages
+# * cross compiling opencv 
 ---
 - hosts: all
   gather_facts: no
